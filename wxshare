@@ -1,0 +1,170 @@
+var wxHelper = {
+    jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',  //分享到朋友圈
+            'onMenuShareAppMessage',//分享给好友
+            'onMenuShareQQ',        //分享给qq好友
+            'onMenuShareQZone',     //分享至qq空间
+            'updateAppMessageShareData', //微信6.7.2&JDK1.4启用  分享至微信好友或者qq好友
+            'updateTimelineShareData'    //微信6.7.2&JDK1.4启用  分享至微信朋友圈或者qq空间
+        ],
+    shareData : {},
+
+    initShareData : function(data) {
+        var _metaData = this.getMetaData();
+        data = data ? data : _metaData;
+        this.shareData = {
+            appId: '', //appid 设置空就好了,web id=25250114746637056375,微信app_id:wxb6c82517aa33d525
+            imgUrl:data['imgUrl']|| _metaData['og:image'] || "http://css.tv.itc.cn/global/images/nav1/logo.gif", //分享朋友圈时所带的图片路径
+            url: data['url']||_metaData['og:url'] || window.location.href, //分享附带链接地址
+            imgWidth: data['width']||_metaData['og:imgWidth'] || "300", //图片宽度
+            imgHeight: data['height']|| _metaData['og:imgHeight'] || "300", //图片高度
+            title:data['title']|| _metaData['og:title'] || document.getElementsByTagName('title')[0].text.split(' ')[0] || "", //分享标题
+            desc: data['description']||data['desc']|| data['content'] ||_metaData['description']||_metaData['og:desc']|| document.getElementsByTagName('title')[0].text.split(' ')[0] || "", //分享内容介绍
+            type: data['type'] || "",
+            callback: data['callback'] || function(){}
+        };
+    },
+    init : function(data) {
+        var iswx = !! (window['WeixinJSBridge'] || /MicroMessenger/i.test(window.navigator.userAgent));
+        if(!iswx){
+            console.log('not weixin please check.');
+            return false;
+        }
+        var me  = this;
+        var _sigArgs = {};
+        me.initShareData();
+        me.getSignature();
+    },
+    initWXEvent:function(wx) {
+        var me = this;
+        
+
+        var title = me.shareData.title;
+        var desc = me.shareData.desc;
+        var url = me.shareData.url;
+        var pic = me.shareData.imgUrl;
+
+        wx.checkJsApi({
+            jsApiList : me.jsApiList,
+            success : function(res){
+                if(res.errMsg == "checkJsApi:ok"){
+                    if(res.checkResult.updateAppMessageShareData == true){ //1.4版本使用
+                        wx.updateAppMessageShareData({
+                            title : title,
+                            desc : desc,
+                            link : url,
+                            imgUrl : pic,
+                            success : function(){
+                            }
+                        })
+                    };
+
+                    if(res.checkResult.updateTimelineShareData == true){  //1.4版本使用
+                        wx.updateTimelineShareData({
+                            title : title,
+                            desc : desc,
+                            link : url,
+                            imgUrl : pic,
+                            success : function(){
+                            }
+                        })
+                    };
+                    if(res.checkResult.onMenuShareAppMessage == true){ //即将废弃
+                        wx.onMenuShareAppMessage({
+                            title : title,
+                            desc : desc,
+                            link : url,
+                            imgUrl : pic,
+                            success : function(){
+                            }
+                        })
+                    };
+                    if(res.checkResult.onMenuShareQQ == true){//即将废弃
+                        wx.onMenuShareQQ({
+                            title : title,
+                            desc : desc,
+                            link : url,
+                            imgUrl : pic,
+                            success : function(){
+                                //me.showRec();
+                            }
+                        })
+                    };
+                    if(res.checkResult.onMenuShareQZone == true){//即将废弃
+                        wx.onMenuShareQZone({
+                            title : title,
+                            desc : desc,
+                            link : url,
+                            imgUrl : pic,
+                            success : function(){
+                                //me.showRec();
+                            }
+                        })
+                    };
+                }
+            }
+        });
+    },
+    getMetaData : function() {
+        //解析meta data
+        var o = document.getElementsByTagName("meta");
+        var rlt = {};
+        for (var i = 0; i < o.length; i++) {
+            var vn = o[i].getAttribute('name');
+            var vp = o[i].getAttribute('property');
+            var vl = o[i].getAttribute('content') || "";
+            if (vn == null || vn == undefined || vn.length == 0) {
+                vn = vp;
+            }
+            if (vn == null || vn == undefined || vn.length == 0) {
+                continue;
+            }
+            rlt[vn] = vl;
+        }
+        videoMetaData = rlt;
+        return rlt;
+    },
+    getSignature :function(){
+        var me = this;
+        var sigUrl = '//wx.m.tv.sohu.com/getWxSign?callback=?&url=' + encodeURIComponent(window.location.href);
+        $.ajax({
+                url: sigUrl,
+                type: 'get',
+                dataType: 'jsonp',
+                cache: false,
+                success: function (data) {
+                    if(typeof wx !== 'undefined'){
+                        wx.config({
+                            appId : data.appId,
+                            timestamp : data.timestamp,
+                            nonceStr : data.nonceStr,
+                            signature : data.signature,
+                            jsApiList : me.jsApiList
+                        });
+
+                        wx.ready(function(){
+                            me.initWXEvent(wx);
+                        });  
+                        wx.error(function(res){
+                            console.log('wx ready error'+res);
+                        });
+                    }
+                },
+                error: function () {
+                    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+                        WeixinJSBridge.on('menu:share:timeline', function (argv) {//分享到朋友圈
+                            WeixinJSBridge.invoke('shareTimeline', me.shareData, function (res) {
+                            });
+                        });
+                        WeixinJSBridge.on('menu:share:appmessage', function (argv) {//分享给朋友
+                            WeixinJSBridge.invoke('sendAppMessage', me.shareData, function (res) {
+                            });
+                        });
+                    }, false);
+                }
+            });
+    }
+
+};
+wxHelper.init();
