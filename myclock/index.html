@@ -1,0 +1,93 @@
+ <!DOCTYPE html>
+ <html lang="en">
+  <head>
+     <meta charset="utf-8">
+     <title>myclock</title>
+     <script type="text/javascript">
+     (function() {
+      var setFontSize = function() {
+        var viewportEl = document.querySelector('meta[name="viewport"]'),
+            hotcssEl = document.querySelector('meta[name="hotcss"]'),
+            dpr = window.devicePixelRatio || 1,
+            maxWidth = 540,
+            designWidth = 0;
+
+        dpr = dpr >= 3 ? 3 : ( dpr >=2 ? 2 : 1 );
+
+        if (hotcssEl) {
+            var hotcssCon = hotcssEl.getAttribute('content');
+            if (hotcssCon) {
+                var initialDprMatch = hotcssCon.match(/initial\-dpr=([\d\.]+)/);
+                if (initialDprMatch) {
+                    dpr = parseFloat(initialDprMatch[1]);
+                }
+                var maxWidthMatch = hotcssCon.match(/max\-width=([\d\.]+)/);
+                if (maxWidthMatch) {
+                    maxWidth = parseFloat(maxWidthMatch[1]);
+                }
+                var designWidthMatch = hotcssCon.match(/design\-width=([\d\.]+)/);
+                if (designWidthMatch) {
+                    designWidth = parseFloat(designWidthMatch[1]);
+                }
+            }
+        }
+        document.documentElement.setAttribute('data-dpr', dpr);
+        document.documentElement.setAttribute('max-width', maxWidth);
+        if( designWidth ){
+            document.documentElement.setAttribute('design-width', designWidth);
+        }
+        var scale = 1 / dpr,
+            content = 'width=device-width, initial-scale=' + scale + ', minimum-scale=' + scale + ', maximum-scale=' + scale + ', user-scalable=no';
+
+        if (viewportEl) {
+            viewportEl.setAttribute('content', content);
+        } else {
+            viewportEl = document.createElement('meta');
+            viewportEl.setAttribute('name', 'viewport');
+            viewportEl.setAttribute('content', content);
+            document.head.appendChild(viewportEl);
+        }
+
+        var innerWidth = document.documentElement.getBoundingClientRect().width || window.innerWidth;
+
+        if( maxWidth && (innerWidth/dpr > maxWidth) ){
+            innerWidth = maxWidth*dpr;
+        }
+
+        if( !innerWidth ){ return false;}
+
+        // document.getElementsByTagName("html")[0].setAttribute("style", "font-size:" + _self.widthProportion() + "px; !important");
+        document.documentElement.style.fontSize = ( innerWidth*20/320 ) + 'px';
+      };
+//px和rem的转换计算
+      var px2rem = function( px , designWidth ){
+      // if( !designWidth ){
+      //   designWidth = parseInt(hotcss.designWidth , 10);
+      // }
+      return parseInt(px,10)*320/designWidth/20;
+    }
+      // init 初始化
+      setFontSize();
+      //手机改变状态时也执行该方法
+      var _evt = 'onorientationchange' in window ? 'orientationchange' : 'resize';
+      var _timer = null;
+      //android,win系列
+      window.addEventListener(_evt, function() {
+          clearTimeout(_timer);
+          _timer = setTimeout(setFontSize, 300);
+      }, false);
+      //ios系列
+      window.addEventListener("pageshow", function(e) {
+          if (e.persisted) {
+              clearTimeout(_timer);
+              _timer = setTimeout(setFontSize, 300);
+          }
+      }, false);
+  }());
+</script>
+   </head>
+   <body>
+     <div id="app"></div>
+     <script src="/dist/build.js"></script>
+   </body>
+ </html>
