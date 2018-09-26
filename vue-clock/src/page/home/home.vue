@@ -1,6 +1,6 @@
 <template>
   	<div>
-        <head-top signinUp='home'>
+        <head-top signin-up='home'>
             <span slot='logo' class="head_logo"  @click="reload">home</span>
         </head-top>
         <!-- <nav class="city_nav">
@@ -38,11 +38,11 @@
             </ul>
         </section> -->
         <nav class="city_nav">
-            <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
+            <router-link :to="userInfo? '/profile':'/login'" class="head_login">
                 <svg class="user_avatar" v-if="userInfo">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                 </svg>
-                <span class="login_span" v-else>登录|注册</span>
+                <span class="login_span">登录|注册</span>
             </router-link>
         </nav>
         
@@ -51,7 +51,9 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
 import headTop from '../../components/header/head'
+
 // import {cityGuess, hotcity, groupcity} from '../../service/getData'
 
 export default {
@@ -103,12 +105,19 @@ export default {
             return sortobj
         }
     },
-
     methods:{
         //点击图标刷新页面
         reload(){
             window.location.reload();
-        }
+        },
+        ...mapActions([
+            'getUserInfo'
+        ])
+    },
+    computed: {
+        ...mapState([
+            'userInfo'
+        ]),
     },
 }
 
