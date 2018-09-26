@@ -1,6 +1,6 @@
 <template>
   	<div>
-        <head-top signin-up='home'>
+        <head-top signinUp='home'>
             <span slot='logo' class="head_logo"  @click="reload">home</span>
         </head-top>
         <!-- <nav class="city_nav">
@@ -37,7 +37,17 @@
                 </li>
             </ul>
         </section> -->
+        <nav class="city_nav">
+            <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
+                <svg class="user_avatar" v-if="userInfo">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
+                </svg>
+                <span class="login_span" v-else>登录|注册</span>
+            </router-link>
+        </nav>
+        
     </div>
+    
 </template>
 
 <script>
@@ -51,6 +61,10 @@ export default {
             guessCityid: '', //当前城市id
             hotcity: [],     //热门城市列表
             groupcity: {},   //所有城市列表
+            // signinUp:true,
+            // headTitle:'welcome',
+            // goBack:false,
+            // userInfo:null
         }
     },
 

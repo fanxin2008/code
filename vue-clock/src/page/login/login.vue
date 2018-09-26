@@ -2,19 +2,9 @@
 	<div class="loginContainer">
 		<head-top :head-title="loginWay ? '登录' : '密码登录'" goBack="true">
 		</head-top>
-		<form class="loginForm" v-if="loginWay">
-			<section class="input_container phone_number">
-				<input type="text" placeholder="账号密码随便输入" name="phone" maxlangth="11" v-model="phoneNumber">
-				<button @click.prevent="getVertifyCode" :class="{right_phone_number:rightPhoneNumber}" v-show="!computedTime"}>获取验证码</button>
-				<button @click.prevent v-show="computedTime">已发送({{computedTime}}s)</button>
-			</section>
+		<form class="loginForm">
 			<section class="input_container">
-				<input type="text" placeholder="验证码" name="mobileCode" maxlength="6" v-model="mobileCode">
-			</section>
-		</form>
-		<form class="loginForm" v-else>
-			<section class="input_container">
-				<input type="text" placeholder="账号" v-model.lazy="userAccount">
+				<input type="text" placeholder="账号"  v-model.lazy="userAccount">
 			</section>
 			<section class="input_container">
 				<input v-if="!showPassword" type="password" placeholder="密码" v-model="passWord" >
@@ -29,7 +19,7 @@
 		<p class="login_tips">温馨提示：未注册过测账号，登录时将自动注册</p>
 		<p class="login_tips">注册过的用户可凭账号密码登录</p>
 		<div class="login_container" @click="mobileLogin">登录</div>
-		<router-link to="/forget" class="to_forget" v-in="!loginWay">重置密码？</router-link>
+		<router-link to="/forget" class="to_forget" v-if="!loginWay">重置密码？</router-link>
 		<alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
 	</div>
 </template>
@@ -39,7 +29,7 @@
     import alertTip from '../../components/common/alertTip'
     import {localapi, proapi, imgBaseUrl} from '../../config/env'
     import {mapState, mapMutations} from 'vuex'
-    //import {mobileCode, checkExsis, sendLogin, getcaptchas, accountLogin} from '../../service/getData'
+    import {accountLogin} from '../../service/getData'
 
     export default {
         data(){
@@ -51,8 +41,8 @@
                 validate_token: null, //获取短信时返回的验证值，登录时需要
                 computedTime: 0, //倒数记时
                 userInfo: null, //获取到的用户信息
-                userAccount: null, //用户名
-                passWord: null, //密码
+                userAccount: 1, //用户名
+                passWord: 1, //密码
                 captchaCodeImg: null, //验证码地址
                 codeNumber: null, //验证码
                 showAlert: false, //显示提示组件
@@ -60,7 +50,7 @@
             }
         },
         created(){
-            this.getCaptchaCode();
+           // this.getCaptchaCode();
         },
         components: {
             headTop,
@@ -85,41 +75,41 @@
                 this.showPassword = !this.showPassword;
             },
             //获取验证吗，线上环境使用固定的图片，生产环境使用真实的验证码
-            async getCaptchaCode(){
-                // let res = await getcaptchas();
-                // this.captchaCodeImg = res.code;
-            },
-            //获取短信验证码
-            async getVerifyCode(){
-                // if (this.rightPhoneNumber) {
-                //     this.computedTime = 30;
-                //     this.timer = setInterval(() => {
-                //         this.computedTime --;
-                //         if (this.computedTime == 0) {
-                //             clearInterval(this.timer)
-                //         }
-                //     }, 1000)
-                //     //判读用户是否存在
-                //     let exsis = await checkExsis(this.phoneNumber, 'mobile');
-                //     if (exsis.message) {
-                //         this.showAlert = true;
-                //         this.alertText = exsis.message;
-                //         return
-                //     }else if(!exsis.is_exists) {
-                //         this.showAlert = true;
-                //         this.alertText = '您输入的手机号尚未绑定';
-                //         return
-                //     }
-                //     //发送短信验证码
-                //     let res = await mobileCode(this.phoneNumber);
-                //     if (res.message) {
-                //         this.showAlert = true;
-                //         this.alertText = res.message;
-                //         return
-                //     }
-                //     this.validate_token = res.validate_token;
-                // }
-            },
+            // async getCaptchaCode(){
+            //     // let res = await getcaptchas();
+            //     // this.captchaCodeImg = res.code;
+            // },
+            // //获取短信验证码
+            // async getVerifyCode(){
+            //     // if (this.rightPhoneNumber) {
+            //     //     this.computedTime = 30;
+            //     //     this.timer = setInterval(() => {
+            //     //         this.computedTime --;
+            //     //         if (this.computedTime == 0) {
+            //     //             clearInterval(this.timer)
+            //     //         }
+            //     //     }, 1000)
+            //     //     //判读用户是否存在
+            //     //     let exsis = await checkExsis(this.phoneNumber, 'mobile');
+            //     //     if (exsis.message) {
+            //     //         this.showAlert = true;
+            //     //         this.alertText = exsis.message;
+            //     //         return
+            //     //     }else if(!exsis.is_exists) {
+            //     //         this.showAlert = true;
+            //     //         this.alertText = '您输入的手机号尚未绑定';
+            //     //         return
+            //     //     }
+            //     //     //发送短信验证码
+            //     //     let res = await mobileCode(this.phoneNumber);
+            //     //     if (res.message) {
+            //     //         this.showAlert = true;
+            //     //         this.alertText = res.message;
+            //     //         return
+            //     //     }
+            //     //     this.validate_token = res.validate_token;
+            //     // }
+            // },
             //发送登录信息
             async mobileLogin(){
                 // if (this.loginWay) {
@@ -135,32 +125,28 @@
                 //     //手机号登录
                 //     this.userInfo = await sendLogin(this.mobileCode, this.phoneNumber, this.validate_token);
                 // }else{
-                //     if (!this.userAccount) {
-                //         this.showAlert = true;
-                //         this.alertText = '请输入手机号/邮箱/用户名';
-                //         return
-                //     }else if(!this.passWord){
-                //         this.showAlert = true;
-                //         this.alertText = '请输入密码';
-                //         return
-                //     }else if(!this.codeNumber){
-                //         this.showAlert = true;
-                //         this.alertText = '请输入验证码';
-                //         return
-                //     }
-                //     //用户名登录
-                //     this.userInfo = await accountLogin(this.userAccount, this.passWord, this.codeNumber);
-                // }
-                // //如果返回的值不正确，则弹出提示框，返回的值正确则返回上一页
-                // if (!this.userInfo.user_id) {
-                //     this.showAlert = true;
-                //     this.alertText = this.userInfo.message;
-                //     if (!this.loginWay) this.getCaptchaCode();
-                // }else{
-                //     this.RECORD_USERINFO(this.userInfo);
-                //     this.$router.go(-1);
+                    if (!this.userAccount) {
+                        this.showAlert = true;
+                        this.alertText = '请输入手机号/邮箱/用户名';
+                        return
+                    }else if(!this.passWord){
+                        this.showAlert = true;
+                        this.alertText = '请输入密码';
+                        return
+                    }
+                    //用户名登录
+                    this.userInfo = await accountLogin(this.userAccount, this.passWord);
+                //}
+                //如果返回的值不正确，则弹出提示框，返回的值正确则返回上一页
+                if (!this.userInfo.user_id) {
+                    this.showAlert = true;
+                    this.alertText = this.userInfo.message;
+                   // if (!this.loginWay) this.getCaptchaCode();
+                }else{
+                    this.RECORD_USERINFO(this.userInfo);
+                    this.$router.go(-1);
 
-                // }
+                }
             },
             closeTip(){
                 this.showAlert = false;

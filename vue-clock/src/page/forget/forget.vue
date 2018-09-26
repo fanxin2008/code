@@ -33,7 +33,7 @@
 <script>
     import headTop from '../../components/header/head'
     import alertTip from '../../components/common/alertTip'
-    import {mobileCode, checkExsis, sendMobile, getcaptchas, changePassword} from '../../service/getData'
+    import {changePassword} from '../../service/getData'
 
     export default {
         data(){
@@ -67,43 +67,6 @@
                 }else{
                     this.rightPhoneNumber = false;
                 }
-            },
-            //获取验证吗
-            async getVerifyCode(){
-                if (this.rightPhoneNumber) {
-                    this.computedTime = 30;
-                    //倒计时
-                    this.timer = setInterval(() => {
-                        this.computedTime --;
-                        if (this.computedTime == 0) {
-                            clearInterval(this.timer)
-                        }
-                    }, 1000)
-                    //判断用户是否存在
-                    let res = await checkExsis(this.phoneNumber, this.accountType);
-                    //判断返回的信息是否正确，用户是否注册
-                    if (res.message) {
-                        this.showAlert = true;
-                        this.alertText = res.message;
-                        return
-                    }else if(!res.is_exists) {
-                        this.showAlert = true;
-                        this.alertText = '您输入的手机号尚未绑定';
-                        return
-                    }
-                    //获取验证信息
-                    let getCode = await mobileCode(this.phoneNumber);
-                    if (getCode.message) {
-                        this.showAlert = true;
-                        this.alertText = getCode.message;
-                        return
-                    }
-                    this.validate_token = getCode.validate_token;
-                }
-            },
-             async getCaptchaCode(){
-                let res = await getcaptchas();
-                this.captchaCodeImg = res.code;
             },
             //重置密码
             async resetButton(){

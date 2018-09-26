@@ -2,7 +2,7 @@
 
 module.exports = {
 	port: 8001,
-	url: 'mongodb://localhost:39103/myclock',
+	url: 'mongodb://111.231.209.57:39103/myclock',
 	session: {
 		name: 'SID',
 		secret: 'SID',

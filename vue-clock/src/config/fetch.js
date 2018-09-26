@@ -5,6 +5,7 @@ import {
 export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 	type = type.toUpperCase();
 	url = baseUrl + url;
+	console.log(baseUrl,url);
 	if (type == 'GET') {
 		let dataStr = '';
 		Object.keys(data).forEach(key => {
@@ -34,7 +35,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch') => {
 
 		try {
 			const reponse = await fetch(url, requestConfig);
-			const reponseJson = await reponse.json();
+			const responseJson = await reponse.json();
 			return responseJson
 		} catch (error) {
 			throw new Error(error)

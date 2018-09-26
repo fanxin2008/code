@@ -7,12 +7,12 @@
                 <polyline points="12,18 4,9 12,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
             </svg>
         </section>
-        <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
+        <!-- <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head_login">
             <svg class="user_avatar" v-if="userInfo">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
             </svg>
             <span class="login_span" v-else>登录|注册</span>
-        </router-link>
+        </router-link> -->
         <section class="title_head ellipsis" v-if="headTitle">
             <span class="title_text">{{headTitle}}</span>
         </section>
@@ -24,10 +24,7 @@
     export default {
     	data(){
             return{
-            	signinUp:true,
-                headTitle:'welcome',
-                goBack:false,
-                userInfo:null
+                //userInfo:null
             }
         },
         mounted(){
@@ -36,7 +33,7 @@
 
         },
         //传递父级组件变量
-        //props: ['signinUp', 'headTitle', 'goBack'],
+        props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
             ...mapState([
                 'userInfo'
@@ -69,18 +66,7 @@
         line-height: 2.2rem;
         margin-left: .4rem;
     }
-    .head_login{
-        right: 0.55rem;
-        @include sc(0.65rem, #fff);
-        @include ct;
-        .login_span{
-            color: #fff;
-        }
-        .user_avatar{
-            fill: #fff;
-            @include wh(.8rem, .8rem);
-        }
-    }
+    
     .title_head{
         @include center;
         width: 50%;

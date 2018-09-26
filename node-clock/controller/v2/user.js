@@ -16,26 +16,15 @@ class User extends AddressComponent {
 		this.updateAvatar = this.updateAvatar.bind(this);
 	}
 	async login(req, res, next){
-		const cap = req.cookies.cap;
-		if (!cap) {
-			console.log('验证码失效')
-			res.send({
-				status: 0,
-				type: 'ERROR_CAPTCHA',
-				message: '验证码失效',
-			})
-			return
-		}
 		const form = new formidable.IncomingForm();
 		form.parse(req, async (err, fields, files) => {
-			const {username, password, captcha_code} = fields;
+			const {username, password} = fields;
+			console.log(username, password);
 			try{
 				if (!username) {
 					throw new Error('用户名参数错误');
 				}else if(!password){
 					throw new Error('密码参数错误');
-				}else if(!captcha_code){
-					throw new Error('验证码参数错误');
 				}
 			}catch(err){
 				console.log('登陆参数错误', err);
@@ -46,19 +35,15 @@ class User extends AddressComponent {
 				})
 				return
 			}
-			if (cap.toString() !== captcha_code.toString()) {
-				res.send({
-					status: 0,
-					type: 'ERROR_CAPTCHA',
-					message: '验证码不正确',
-				})
-				return
-			}
-			const newpassword = this.encryption(password);
+			
+			const newpassword = this.encryption('1');
+			console.log(newpassword);
 			try{
 				const user = await UserModel.findOne({username});
+				console.log(user);
 				//创建一个新的用户
 				if (!user) {
+					console.log('create');
 					const user_id = await this.getId('user_id');
 					const cityInfo = await this.guessPosition(req);
 					const registe_time = dtime().format('YYYY-MM-DD HH:mm');
