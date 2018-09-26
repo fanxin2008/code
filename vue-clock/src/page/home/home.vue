@@ -42,7 +42,7 @@
                 <svg class="user_avatar" v-if="userInfo">
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>
                 </svg>
-                <span class="login_span">登录|注册</span>
+                <span class="login_span" v-else>登录|注册</span>
             </router-link>
         </nav>
         
@@ -63,10 +63,6 @@ export default {
             guessCityid: '', //当前城市id
             hotcity: [],     //热门城市列表
             groupcity: {},   //所有城市列表
-            // signinUp:true,
-            // headTitle:'welcome',
-            // goBack:false,
-            // userInfo:null
         }
     },
 
@@ -87,6 +83,7 @@ export default {
         //     this.groupcity = res;
         //     console.log(res)
         // })
+        console.log(this.userInfo);
     },
 
     components:{
@@ -95,15 +92,15 @@ export default {
 
     computed:{
         //将获取的数据按照A-Z字母开头排序
-        sortgroupcity(){
-            let sortobj = {};
-            for (let i = 65; i <= 90; i++) {
-                if (this.groupcity[String.fromCharCode(i)]) {
-                    sortobj[String.fromCharCode(i)] = this.groupcity[String.fromCharCode(i)];
-                }
-            }
-            return sortobj
-        }
+        // sortgroupcity(){
+        //     let sortobj = {};
+        //     for (let i = 65; i <= 90; i++) {
+        //         if (this.groupcity[String.fromCharCode(i)]) {
+        //             sortobj[String.fromCharCode(i)] = this.groupcity[String.fromCharCode(i)];
+        //         }
+        //     }
+        //     return sortobj
+        // }
     },
     methods:{
         //点击图标刷新页面
