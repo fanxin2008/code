@@ -1,0 +1,797 @@
+body {
+    background: #f7f7f7;
+    font: 12px/1.5 PingFangSC-Regular, sans-serif;
+}
+
+header {
+  height: 0.75rem;
+  text-align: center;
+  position: relative;
+  background: #fff;
+  z-index: 9;
+  border-bottom: 2px solid #f7f7f7;
+}
+header .top-l{
+  position: absolute;
+  display: inline-block;
+  width: 0.3rem;
+  height: 0.4rem;
+  top: 0.2rem;
+  left: 0.3rem;
+  background: url(./img/go_back.png);
+  background-position: 0;
+  background-size: cover;
+}
+header h1 {
+  font-size: 0.34rem;
+  line-height:  0.75rem;
+  color: #3a3a3a;
+  font-weight: bold;
+}
+
+
+
+.pd-lr {
+    padding-left: 3.3%;
+    padding-right: 3.3%;
+}
+
+.noderesult {
+    background-color: white;
+    height: 8.1rem;
+    width: 100%
+}
+
+.notipimg {
+    padding-top: 1.5rem;
+    padding-left: 33%;
+    padding-right: 33%;
+}
+
+.notips {
+    padding-top: 0.3rem;
+    padding-left: 40%;
+    padding-right: 30%
+}
+
+.title {
+    font-size: 0.32rem;
+    color: #3a3a3a;
+    margin: 0 0 0.17rem
+}
+
+.title2 {
+    font-size: 0.3rem;
+    color: #3a3a3a;
+    margin: 0 0 0.4rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.relates {
+    background: #fff;
+    padding: 0.4rem 0 0.3rem
+}
+
+.relates li {
+    float: left;
+    width: 25%;
+    text-align: center
+}
+
+.relates li p {
+    font-size: 0.2rem;
+    color: #5b5b5b;
+    margin: 0.07rem;
+}
+
+.relates .icon {
+    width: 0.8rem;
+    margin: 0 auto;
+    height: 0.8rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.relates .icon:hover{
+    opacity: 0.8;
+}
+.icon-collage {
+    background-image: url(img/icon_collage.png)
+}
+
+.icon-object {
+    background-image: url(img/icon_object.png)
+}
+
+.icon-test {
+    background-image: url(img/icon_test.png)
+}
+
+.icon-award {
+    background-image: url(img/icon_award.png)
+}
+
+.icon-recommend {
+    background-image: url(img/icon_recommend.png)
+}
+
+.icon-xzy {
+    background-image: url(img/icon_xzy.png)
+}
+
+.icon-xdx {
+    background-image: url(img/icon_xdx.png)
+}
+
+.icon-course {
+    background-image: url(img/class.png)
+}
+.zhuanjia {
+    background: #fff;
+    margin: 0.16rem 0 0rem;
+    padding-top: 0.33rem;
+    /*padding-bottom: 1rem;*/
+}
+
+.zhuanjia-top {
+    height: 2.7rem;
+    background-size: cover;
+    margin-bottom: 0.2rem;
+}
+
+.zhuanjia-top .text {
+    float: right;
+    width: 62.5%;
+    padding: 0.13rem 0 0
+}
+
+.zhuanjia-top .tit h3 {
+    float: left;
+    font-size: 0.3rem;
+    color: #3a3a3a
+}
+
+.zhuanjia-top .tit span {
+    float: left;
+    font-size: 0.2rem;
+    margin: 0.18rem 0 0 13px
+}
+
+.zhuanjia-top .text p {
+    font-size: 0.2rem;
+    line-height: 0.32rem;
+    color: #3a3a3a
+}
+
+.zhuanjia-more {
+    -webkit-tap-highlight-color:transparent;
+}
+
+.zhuanjia-more li {
+    float: left;
+    background: #f7f7f7;
+    width: 42.83%;
+    padding: 0.2rem 2.86%;
+    margin-bottom: 0.2rem;
+    -webkit-tap-highlight-color:transparent;;
+}
+
+.zhuanjia-more li:nth-child(even) {
+    margin-left: 2.86%
+}
+
+.zhuanjia-more .pic {
+    float: left;
+    width: 31.67%;
+}
+
+.zhuanjia-more .pic img {
+    border-radius: 50%
+}
+
+.zhuanjia-more .text {
+    float: right;
+    margin: 0.08rem 0 0;
+    width: 64%
+}
+
+.zhuanjia-more li h3 {
+    font-size: 0.24rem;
+    color: #3a3a3a
+}
+
+.zhuanjia-more li p {
+    font-size: 0.18rem;
+    line-height: 0.24rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+@media all and (min-width:320px) and (max-width:480px) {
+    .zhuanjia-top .text {
+        width: 65%;
+        padding: 0.1rem 0 0
+    }
+}
+
+@media all and (min-width:320px) and (max-width:360px) {
+    .zhuanjia-top .tit h3 {
+        font-size: 14px
+    }
+    .zhuanjia-more li h3 {
+        font-size: 14px
+    }
+    .zhuanjia-more .text {
+        margin: 0
+    }
+}
+
+@media all and (min-width:360px) and (max-width:480px) {
+    .zhuanjia-top .tit h3 {
+        font-size: 16px
+    }
+    .zhuanjia-more li h3 {
+        font-size: 16px
+    }
+}
+/*@media all and (min-height:360px) and (max-height:568px)
+{
+  .zhuanjia{padding-bottom:0.8rem;}
+}*/
+
+.collage {
+    background: #fff;
+    padding: 0.4rem 8.8%
+}
+
+.collage-l {
+    float: left;
+    width: 24.273%;
+}
+
+.collage-l .btnbox {
+    text-align: center
+}
+
+.collage-l .btn-gz,
+.collage-l .btn-gzed {
+    display: inline-block;
+    width: 80%;
+    height: 0.5rem;
+    vertical-align: top;
+    margin: 0.23rem 0 0
+}
+
+.collage-l .btn-gz {
+    background: url(img/btn_gz.png) no-repeat;
+    background-size: contain
+}
+
+.collage-l .btn-gzed {
+    background: url(img/btn_gzed.png) no-repeat;
+    background-size: contain
+}
+
+.collage-r {
+    float: right;
+    width: 66.35%
+}
+.collage-r ul{
+    height: 1.5rem;    
+    padding-top: 0.09rem;
+    box-sizing: border-box
+}
+.collage-r .text li {
+    float: left;
+    font-size: 0.24rem;
+    line-height: 0.45rem;
+    color: #3a3a3a;
+    width: 64%
+}
+
+.collage-r .text li:nth-child(even) {
+    width: 36%
+}
+
+.collage-r .labels {
+    margin: 0.28rem 0 0
+}
+
+.collage-r .labels span {
+    float: left;
+    padding: 0 5%;
+    height: 0.4rem;
+    font-size: 0.24rem;
+    line-height: 0.4rem;
+    margin: 0 2.5% 0 0;
+    background: #f5f5f5
+}
+
+.collage-r .labels span:last-child {
+    margin-right: 0
+}
+
+/*.collageDetail {
+    position: relative;
+    background: #fff;
+    margin: 0.16rem 0 0
+}*/
+.collageDetail {
+    position:relative;
+    background:#fff;
+    margin:0.16rem 0 0 0;
+    /*padding-bottom: 2rem;*/
+}
+.collageBar {
+    border-bottom:2px solid #f7f7f7;
+    /*margin:0 0 0.25rem;*/
+    width:100%;
+    padding :0;
+}
+.collageBar li a:hover {
+    color:#000;
+}
+.collageBar li{ 
+    float:left;
+    font-size:0.26rem;
+    height:0.86rem;
+    padding-top: 0.1rem;
+    /*margin-right:6.7%*/
+    width:25%;
+    text-align: center;
+}
+.collageBar li:last-child {
+    margin-right:0
+}
+.collageBar li span {
+    display:inline-block;
+   /* padding:0 auto;*/
+    line-height:0.86rem;
+    cursor:pointer;
+    text-align:center;
+    padding:0 0.1rem;
+}
+.collageBar li.on span {
+    color:#6f99fd;
+    border-bottom:2px solid #6f99fd;
+    margin-bottom:-2px
+}
+@media all and (min-width:360px) and (max-width:500px)
+{
+   /* .collageBar li span{padding:0 6px}*/
+}
+@media all and (min-width:320px) and (max-width:380px)
+{
+    .collage-r .text li{font-size:0.22rem;width:58%}
+    .collage-r .text li:nth-child(even){width:42%}
+    .collage-r .labels span{padding:0 4%;}
+   /* .collageBar li span{padding:0 4px}*/
+   /* .collageBar li{margin-right: 5.5%;}*/
+}
+
+.collage-l .badge img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.scoreChart {
+    margin: 0;
+}
+.scoreChart div:first-child{
+    height: 1.2rem;
+    line-height: 1.2rem
+    position:relative;
+}
+.scoreChart div:first-child .title2 {
+    /*font-size: 0.3rem;
+    color: #3a3a3a;
+    font-weight: bold;
+    width: 2.7rem;
+    margin:0;
+    float: left;
+    line-height: 1.2rem;*/
+    font-size: .3rem;
+    color: #3a3a3a;
+    font-weight: 700;
+    width: 2.7rem;
+    float:left;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    margin:0;
+}
+
+.filter {
+    float: right;
+    margin: 0.1rem 0 0
+}
+
+.filter span {
+    float: left;
+    font-size: 0.26rem;
+    line-height: 0.26rem;
+    color: #3a3a3a;
+    margin: 0.06rem 0 0
+}
+
+.filter em {
+    float: left;
+    border-left: 1px solid #f7f7f7;
+    width: 3px;
+    height: 0.24rem;
+    margin: 0.06rem 5px 0 8px
+}
+
+.selector {
+    float: left;
+    border: 0 none
+}
+
+.selector,
+.selector option {
+    font-size: 0.26rem;
+    line-height: 0.26rem
+}
+
+.tableA {
+    width: 100%;
+    border-collapse: collapse;
+    padding-bottom: 0.5rem;
+}
+
+.tableA th {
+    height: 0.55rem;
+    background-color: #e7e7e7;
+    color: #3a3a3a;
+    font-size: 0.20rem;
+    line-height: 0.55rem;
+    font-weight: normal
+}
+
+.tableA td {
+    height: 0.55rem;
+    border: 1px solid #f7f7f7;
+    color: #3a3a3a;
+    font-size: 0.22rem;
+    line-height: 0.55rem;
+    text-align: center
+}
+
+.description {
+    font-size: 0.3rem;
+    color: #3a3a3a;
+    margin: 0 0 0.6rem
+}
+
+.description a {
+    color: #6f99fd
+}
+
+.description .arrow {
+    display: inline-block;
+    border-right: 1px solid #6f99fd;
+    border-top: 1px solid #6f99fd;
+    height: 0.08rem;
+    width: 1.15%;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    border-left: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    vertical-align: middle;
+    margin-left: 4px
+}
+
+.keyan {
+    margin: 0 0 0.8rem
+}
+
+.keyan ul li {
+    float: left;
+    width: 49.5%;
+    margin: 0 0.05rem 0.05rem 0;
+    background: #f7f7f7;
+    padding: 0.38rem 0;
+    overflow: hidden
+}
+
+.keyan ul li:nth-child(even) {
+    margin-right: 0
+}
+
+.keyan ul li .icon {
+    float: left;
+    width: 21.32%;
+    margin-left: 21.32%;
+    height: 0.74rem
+}
+
+.keyan ul li .text {
+    float: left;
+    /*margin-left: 10.66%;*/
+    color: #3a3a3a;
+    margin-left:0.32rem;
+}
+
+.keyan ul li .text .p1 {
+    font-size: 0.34rem;
+    line-height: 0.4rem
+}
+
+.keyan ul li .text .p2 {
+    font-size: 0.24rem
+}
+
+.keyan .ky-1 {
+    background: url(img/ky_1.png) no-repeat;
+    background-size: contain
+}
+
+.keyan .ky-2 {
+    background: url(img/ky_2.png) no-repeat;
+    background-size: contain
+}
+
+.keyan .ky-3 {
+    background: url(img/ky_3.png) no-repeat;
+    background-size: contain
+}
+
+.keyan .ky-4 {
+    background: url(img/ky_4.png) no-repeat;
+    background-size: contain
+}
+
+.ratiobox {
+    border: 1px solid #efefef;
+    padding: 0.3rem 0;
+    text-align: center
+}
+
+.ratio {
+    display: inline-block;
+    width: 54.73%;
+    margin: 0 4.3%
+}
+
+.ratio .num {
+    display: inline-block;
+    font-size: 0.24rem;
+    text-align: center
+}
+
+.ratio .blue {
+    color: #6f99fd
+}
+
+.ratio .red {
+    color: #dd677c
+}
+
+.meter-a {
+    display: inline-block;
+    width: 100%;
+    height: 0.18rem;
+}
+
+.meter-a::-webkit-meter-bar {
+    background: #dd677c;
+    border-radius: 0.09rem
+}
+
+.meter-a::-webkit-meter-optimum-value {
+    background: linear-gradient(to bottom, #6f99fd, #6f99fd);
+    border-top-left-radius: 0.09rem;
+    border-bottom-left-radius: 0.09rem
+}
+
+.meter-a::-webkit-meter-suboptimum-value {
+    background: linear-gradient(to bottom, #6f99fd, #6f99fd);
+}
+
+.meter-a::-webkit-meter-even-less-good-value {
+    background: linear-gradient(to bottom, #6f99fd, #6f99fd);
+}
+
+.icon-male,
+.icon-female {
+    display: inline-block;
+    height: 0.71rem;
+    vertical-align: middle
+}
+
+.icon-male {
+    width: 4%;
+    background: url(img/male.png) no-repeat;
+    background-size: contain
+}
+
+.icon-female {
+    width: 5.16%;
+    background: url(img/female.png) no-repeat;
+    background-size: contain
+}
+
+.return {
+    position: relative;
+    background: #fff;
+    border-bottom: 0.01rem solid #ddd;
+    height: 0.74rem;
+}
+
+.return h1 {
+    font-size: 0.34rem;
+    color: #000;
+    text-align: center;
+    line-height: 0.74rem;
+}
+
+.return h1:before {
+    content: "";
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    top: 0.23rem;
+    background: #fff;
+    left: 0.3rem;
+    -webkit-transform: rotate(-45deg);
+    -webkit-transform-origin: center center;
+    border-top: .02rem solid #3d3d3d;
+    border-left: .02rem solid #3d3d3d;
+}
+
+.return .addr {
+    font-size: 0.24rem;
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0.1rem;
+}
+
+.return .addr:before {
+    content: "";
+    background: url(img/addr.png) no-repeat left top /0.15rem 0.2rem;
+    width: 0.15rem;
+    height: 0.2rem;
+    display: inline-block;
+    margin-right: 0.08rem;
+}
+
+
+
+
+header .addr {
+    font-size: 0.24rem;
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0.1rem;
+}
+
+header .addr:before {
+    content: "";
+    background: url(img/addr.png) no-repeat left top /0.15rem 0.2rem;
+    width: 0.15rem;
+    height: 0.2rem;
+    display: inline-block;
+    margin-right: 0.08rem;
+}
+
+#container {
+    width: 7rem;
+    height: 4rem;
+    /*min-width:6rem;*/
+    margin: 0 auto;
+}
+
+.highcharts-credits {
+    display: none;
+}
+
+.noresultpan {
+    height: 2rem;
+    width: 100%;
+    background-color: white;
+}
+
+
+/*.selYear .arr{
+  margin-left: 0.1rem;
+  display: inline-block;
+  width:0.24rem;
+  height: 0.20rem;
+  background: url(//css.tv.itc.cn/m/school/img/arr.png);
+  background-position: 0;
+  background-size: cover;
+}
+.selYearList{display: none;}*/
+
+.selYearOpen .arr {
+    background: url(//css.tv.itc.cn/m/school/img/openarr.png);
+    background-position: 0;
+    background-size: cover;
+}
+
+.selYearOpen p {
+    color: #6f99fd;
+}
+
+.selYearOpen .J-subject {
+    color: #3a3a3a;
+}
+
+.selYearOpen .selYearList {
+    display: block;
+}
+
+.selYearList {
+    width: 7.5rem;
+    background-color: #fff;
+    z-index: 10;
+    left: 0rem;
+    border-top: 1px solid #f7f7f7;
+}
+
+.selYearList li {
+    padding-right: 0.6rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: right;
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.selYearList li.on {
+    color: #6f99fd;
+}
+
+.subRight {
+    padding-top: 0.06rem;
+    font-size: 0.3rem;
+    padding-right: 0rem;
+}
+.scoreChart .subRight{
+    font-size: 0.26rem;
+    padding:0;
+    color: #3a3a3a;
+}
+.J-subject {
+    border-right: 1px solid #f7f7f7;
+    margin-right: 0.24rem;
+    padding-right: 0.24rem;
+}
+.selYear{
+    line-height: 1.2rem;
+    height: 1.2rem;
+    color:#6a6a6a;
+}
+.selYear .arr {
+    margin-left: 0.1rem;
+    display: inline-block;
+    width: 0.24rem;
+    height: 0.20rem;
+    background: url(//css.tv.itc.cn/m/school/img/arr.png);
+    background-position: 0;
+    background-size: cover;
+}
+
+.selYearList {
+    display: none;
+}
+.ratiobar {
+    width:100%;
+    display: inline-block;
+}
+.ratioboy {
+    background-color:#6f99fd;
+    float: left;
+    height: 0.18rem;
+    border-radius:0.09rem 0 0 0.09rem; 
+    -webkit-border-radius:0.09rem 0 0 0.09rem; 
+}
+.ratiogirl {
+    background-color: #dd677c;
+    float: right;
+    height: 0.18rem;
+    border-radius:0 0.09rem 0.09rem 0;
+    -webkit-border-radius:0 0.09rem 0.09rem 0;
+}
+.gender-ratio{
+    padding-bottom: 0.5rem;
+}

@@ -1,0 +1,15 @@
+/*reset*/
+section,header{display:block;}
+body,h1,h2,h3,h4,h5,h6,p{margin:0;}
+ul,ol,li,dl,dd,div{margin:0;padding:0;}
+ul,ol{list-style:none outside none; }
+h1,h2,h3{line-height: 2; font-weight: normal; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.4rem; }
+body{/*font-family:"Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;*/-webkit-backface-visibility:hidden;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;font-size:0.14rem;}
+/* clear float */
+.cf:after{content:"";display:block;visibility:hidden;height:0;clear:both;}
+.cf{zoom:1}
+/*main*/
+body,html{height:100%;}

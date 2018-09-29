@@ -1,0 +1,32 @@
+/* bottom menu */
+
+.J-posbottom{height: 1.5rem;width: 100%;background-color: #fff;}
+.bottom-menu{background:#fff;border-top:0.03rem solid #ddd;font-size:0.2rem !important;position:fixed;bottom:0;left:0;width:100%;z-index: 5;}
+.bottom-menu .bottom-menu-ul{display:flex;display:-webkit-flex;justify-content:space-between;height:1rem;text-align:center;padding: 0.06rem 0.25rem;box-sizing:content-box !important;}
+.bottom-menu .bmi{float: left;width: 20%;position: relative;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;box-sizing:content-box !important;font-size:0.2rem !important;}
+.bottom-menu .bmi:before{content:"";background:url(img/bottom-menu.png) no-repeat left top /1.03rem 2.71rem;height:0.33rem;margin:0.15rem auto 0.08rem;display:block; }
+.bottom-menu .bmi-mskt:before{width:0.36rem;}
+.bottom-menu .bmi-mskt:hover:before{background-position:-0.64rem 0;}
+.bottom-menu .bmi-gkzy:before{background-position:0 -0.58rem;width:0.36rem;}
+.bottom-menu .bmi-gkzy:hover:before{background-position:-0.64rem -0.58rem;}
+.bottom-menu .bmi-zzzs:before{background-position:0 -1.19rem;width:0.27rem;}
+.bottom-menu .bmi-zzzs:hover:before{background-position:-0.64rem -1.19rem;}
+.bottom-menu .bmi-xkgh:before{background-position:0 -1.78rem;width:0.30rem;}
+.bottom-menu .bmi-xkgh:hover:before{background-position:-0.64rem -1.78rem;}
+.bottom-menu .bmi-grzx:before{background-position:0 -2.37rem;width:0.28rem;}
+.bottom-menu .bmi-grzx:hover:before{background-position:-0.64rem -2.37rem;}
+
+.bottom-menu .bmi-mskt.on:before{background-position:-0.64rem 0;}
+.bottom-menu .bmi-gkzy.on:before{background-position:-0.64rem -0.58rem;}
+.bottom-menu .bmi-zzzs.on:before{background-position:-0.64rem -1.19rem;}
+.bottom-menu .bmi-xkgh.on:before{background-position:-0.64rem -1.78rem;}
+.bottom-menu .bmi-grzx.on:before{background-position:-0.64rem -2.37rem;}
+.bottom-menu .bmi.on a{color:#6f99fd;}
+.bottom-menu .bmi a{height:  1rem;position: absolute;top: 0;left:0;width: 100%;display: inline-block;padding-top:0.56rem;text-decoration: none;color: #000;}
+.bottom-menu,.J-posbottom{
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+}
+.no-top-border{
+	border-top:none;
+}
